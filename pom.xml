@@ -73,6 +73,12 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-testbench</artifactId>
+			<version>4.2.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -128,7 +134,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.plugin.version}</version>
 				<configuration>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
+<!-- 					<scanIntervalSeconds>2</scanIntervalSeconds> -->
 				</configuration>
 			</plugin>
 		</plugins>
