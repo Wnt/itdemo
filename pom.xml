@@ -127,6 +127,18 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- The Jetty plugin allows us to easily test the development build by
 				running jetty:run on the command line. -->
 			<plugin>
@@ -134,10 +146,36 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.plugin.version}</version>
 				<configuration>
-<!-- 					<scanIntervalSeconds>2</scanIntervalSeconds> -->
+					<stopKey>STOP</stopKey>
+					<stopPort>8998</stopPort>
+					<httpConnector>
+						<port>${jetty.port}</port>
+					</httpConnector>
 				</configuration>
+				<executions>
+		          <execution>
+					<id>start-jetty</id>
+					<phase>pre-integration-test</phase>
+					<goals>
+						<goal>start</goal>
+					</goals>
+				</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+	    <testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
 	</build>
 
 	<profiles>
@@ -180,6 +218,23 @@
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jetty.port>8080</jetty.port>
+				<test.hostname>localhost</test.hostname>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<jetty.port>8083</jetty.port>
+				<test.hostname>localhost</test.hostname>
+			</properties>
 		</profile>
 	</profiles>
 
