@@ -71,6 +71,7 @@ public class SimpleIT extends TestBenchTestCase {
 
 	@After
 	public void teardown() {
-		getDriver().quit();
+		// When running with ScreenshotOnFailureRule Driver.quit() will be called by com.vaadin.testbench.ScreenshotOnFailureRule.finished()
+		// getDriver().quit();
 	}
 }
