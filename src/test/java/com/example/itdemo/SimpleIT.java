@@ -6,6 +6,7 @@ import java.net.URL;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.vaadin.testbench.ElementQuery;
+import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
@@ -21,6 +23,9 @@ import com.vaadin.testbench.elements.TextFieldElement;
 public class SimpleIT extends TestBenchTestCase {
 
 	private String jettyUrl;
+
+	@Rule
+	public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(this, true);
 
 	@Before
 	public void setup() throws MalformedURLException {
