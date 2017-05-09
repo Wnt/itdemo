@@ -219,23 +219,6 @@
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<jetty.port>8080</jetty.port>
-				<test.hostname>localhost</test.hostname>
-			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<jetty.port>8083</jetty.port>
-				<test.hostname>localhost</test.hostname>
-			</properties>
-		</profile>
 	</profiles>
 
 </project>

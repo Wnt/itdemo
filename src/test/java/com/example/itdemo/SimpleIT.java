@@ -1,9 +1,7 @@
 package com.example.itdemo;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -22,7 +20,6 @@ import com.vaadin.testbench.elements.TextFieldElement;
 
 public class SimpleIT extends TestBenchTestCase {
 
-	private int jettyPort = 8080;
 	private String jettyUrl;
 
 	@Before
@@ -42,21 +39,16 @@ public class SimpleIT extends TestBenchTestCase {
 				throw new RuntimeException("RemoteWebDriver requested, but tbgridurl system property was not set");
 			}
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-			// without requireWindowFocus the driver pauses for about 2 seconds between each character it types
+			// without requireWindowFocus the driver pauses for about 2 seconds
+			// between each character it types
 			capabilities.setCapability("requireWindowFocus", true);
 			RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(tbGridUrl), capabilities);
 			setDriver(remoteWebDriver);
 		}
-		Properties prop = new Properties();
-		try {
-			prop.load(this.getClass().getClassLoader().getResourceAsStream("config.properties"));
-			String portStr = prop.getProperty("jetty.port");
-			jettyPort = Integer.parseInt(portStr);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
 		jettyUrl = System.getProperty("jettyurl");
-		jettyUrl = jettyUrl == null ? "http://localhost:" + jettyPort : jettyUrl;
+		if (jettyUrl == null) {
+			jettyUrl = "http://localhost:8080";
+		}
 	}
 
 	@Test
