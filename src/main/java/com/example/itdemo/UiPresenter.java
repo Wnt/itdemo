@@ -10,7 +10,7 @@ public class UiPresenter {
 
 	public void buttonClicked(String value) {
 		String content = "Thanks " + value + ", it works!";
-		view.addLabel("test breaking change");
+		view.addLabel(content);
 		
 	}
 
