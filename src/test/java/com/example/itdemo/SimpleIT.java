@@ -24,9 +24,6 @@ public class SimpleIT extends TestBenchTestCase {
 
 	private String jettyUrl;
 
-	@Rule
-	public ScreenshotOnFailureRule screenshotOnFailure = new ScreenshotOnFailureRule(this, true);
-
 	@Before
 	public void setup() throws MalformedURLException {
 		String desiredDriver = System.getProperty("webdriver");
@@ -71,7 +68,6 @@ public class SimpleIT extends TestBenchTestCase {
 
 	@After
 	public void teardown() {
-		// When running with ScreenshotOnFailureRule Driver.quit() will be called by com.vaadin.testbench.ScreenshotOnFailureRule.finished()
-		// getDriver().quit();
+		getDriver().quit();
 	}
 }
