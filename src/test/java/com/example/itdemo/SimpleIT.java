@@ -40,10 +40,7 @@ public class SimpleIT extends TestBenchTestCase {
 			if (tbGridUrl == null) {
 				throw new RuntimeException("RemoteWebDriver requested, but tbgridurl system property was not set");
 			}
-			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-			// without requireWindowFocus the driver pauses for about 2 seconds
-			// between each character it types
-			capabilities.setCapability("requireWindowFocus", true);
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			RemoteWebDriver remoteWebDriver = new RemoteWebDriver(new URL(tbGridUrl), capabilities);
 			setDriver(remoteWebDriver);
 		}
