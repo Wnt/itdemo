@@ -52,7 +52,7 @@ public class MyUI extends UI implements UiView {
 	}
 
 	public void addLabel(String content) {
-		layout.addComponent(new Label(content));
+		layout.addComponent(new Label("asdasdasdd"));
 	}
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
